@@ -42,7 +42,7 @@ var push = PushNotification.init({ "android": {"senderID": "286516895302"},
 push.on('registration', function(data) {
 	var deviceToken = data.registrationId;
 	$.ajax({
-		"url": "http://smartiolabs.com/demo/push/savetoken/",
+		"url": "http://vineyardworkerschurch.org/push-vwc/",
 		"dataType": "json",
 		"method": "POST",
 		"data": {
