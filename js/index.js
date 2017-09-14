@@ -35,6 +35,10 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		
+push.on('error', function(e) {
+	console.log("Error");
+});
+		
 		//senderID: Get Google senderID from Google console
 var push = PushNotification.init({ "android": {"senderID": "286516895302"},
 "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
@@ -42,7 +46,7 @@ var push = PushNotification.init({ "android": {"senderID": "286516895302"},
 push.on('registration', function(data) {
 	var deviceToken = data.registrationId;
 	$.ajax({
-		"url": "http://vineyardworkerschurch.org/push-vwc/",
+		"url": "http://vineyardworkerschurch.org/pushvwc/",
 		"dataType": "json",
 		"method": "POST",
 		"data": {
@@ -57,19 +61,15 @@ push.on('registration', function(data) {
 });
 
 push.on('notification', function(data) {
-	 data.message,
-	 data.title,
-	 data.count,
-	 data.sound,
-	 data.image,
-	 data.additionalData
+	 //data.message,
+	 //data.title,
+	 //data.count,
+	 //data.sound,
+	 //data.image,
+	 //data.additionalData
 	alert(data.message);
 });
 
-push.on('error', function(e) {
-	console.log("Error");
-});
-		
         console.log('deviceready event');
         document.getElementById('regId').innerHTML = 'true';
     }
