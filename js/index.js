@@ -61,6 +61,23 @@ var app = {
  app.push.on('error', function(e) {
      console.log("push error = " + e.message);
  });
+ 
+ app.push.on('notification', function(data) {
+     console.log('notification event');
+     var cards = document.getElementById("cards");
+     var push = '<div class="row">' +
+       '<div class="col s12 m6">' +
+       '  <div class="card darken-1">' +
+       '    <div class="card-content black-text">' +
+       '      <span class="card-title black-text">' + data.title + '</span>' +
+       '      <p>' + data.message + '</p>' +
+       '      <p>' + data.additionalData.foreground + '</p>' +
+       '    </div>' +
+       '  </div>' +
+       ' </div>' +
+       '</div>';
+     cards.innerHTML += push;
+ });
 		
         console.log('deviceready event');
         document.getElementById('regId').innerHTML = 'true';
