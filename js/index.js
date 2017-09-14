@@ -35,49 +35,40 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		
-		 app.push = PushNotification.init({
-     "android": {
-         "senderID": "286516895302"
-     },
-     "ios": {
-       "sound": true,
-       "vibration": true,
-       "badge": true
-     },
-     "windows": {}
- });
+		//senderID: Get Google senderID from Google console
+var push = PushNotification.init({ "android": {"senderID": "286516895302"},
+"ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
- app.push.on('registration', function(data) {
-     console.log("registration event: " + data.registrationId);
-     document.getElementById("regId").innerHTML = data.registrationId;
-     var oldRegId = localStorage.getItem('registrationId');
-     if (oldRegId !== data.registrationId) {
-         // Save new registration ID
-         localStorage.setItem('registrationId', data.registrationId);
-         // Post registrationId to your app server as the value has changed
-     }
- });
+push.on('registration', function(data) {
+	var deviceToken = data.registrationId;
+	$.ajax({
+		"url": "http://smartiolabs.com/demo/push/savetoken/",
+		"dataType": "json",
+		"method": "POST",
+		"data": {
+			"device_token" : deviceToken,
+			"device_type" : 'android',
+			"channels_id" : '1,2'
+		},
+		"success": function(response) {
+			console.log("Device ID "+deviceToken+" sent successfuly");
+		}
+	});
+});
 
- app.push.on('error', function(e) {
-     console.log("push error = " + e.message);
- });
- 
- app.push.on('notification', function(data) {
-     console.log('notification event');
-     var cards = document.getElementById("cards");
-     var push = '<div class="row">' +
-       '<div class="col s12 m6">' +
-       '  <div class="card darken-1">' +
-       '    <div class="card-content black-text">' +
-       '      <span class="card-title black-text">' + data.title + '</span>' +
-       '      <p>' + data.message + '</p>' +
-       '      <p>' + data.additionalData.foreground + '</p>' +
-       '    </div>' +
-       '  </div>' +
-       ' </div>' +
-       '</div>';
-     cards.innerHTML += push;
- });
+push.on('notification', function(data) {
+	 data.message,
+	 data.title,
+	 data.count,
+	 data.sound,
+	 data.image,
+	 data.additionalData
+	alert(data.message);
+});
+
+push.on('error', function(e) {
+	console.log("Error");
+});
 		
         console.log('deviceready event');
         document.getElementById('regId').innerHTML = 'true';
