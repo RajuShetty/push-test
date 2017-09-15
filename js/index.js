@@ -35,10 +35,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
 		
-push.on('error', function(e) {
-	console.log("Error");
-});
-		
 		//senderID: Get Google senderID from Google console
 var push = PushNotification.init({ "android": {"senderID": "286516895302"},
 "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
@@ -69,6 +65,12 @@ push.on('notification', function(data) {
 	 //data.additionalData
 	alert(data.message);
 });
+		
+push.on('error', function(e) {
+	console.log("Error");
+});
+		
+		
 
         console.log('deviceready event');
         document.getElementById('regId').innerHTML = 'true';
