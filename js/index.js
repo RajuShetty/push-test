@@ -82,9 +82,8 @@ push.on('error', function(e) {
 push.on('error', function(e) {
 	console.log("Error");
 });
-		
-		
- push.on('notification', function(data) {
+	
+	push.on('notification', function(data) {
      console.log('notification event');
      var cards = document.getElementById("cards");
      var push = '<div class="row">' +
@@ -99,7 +98,15 @@ push.on('error', function(e) {
        ' </div>' +
        '</div>';
      cards.innerHTML += push;
- });
+
+     app.push.finish(function() {
+         console.log('success');
+     }, function() {
+         console.log('error');
+     });
+ });	
+		
+ 
  
         console.log('deviceready event');
         document.getElementById('regId').innerHTML = 'true';
