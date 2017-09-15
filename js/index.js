@@ -65,12 +65,12 @@ push.on('registration', function(data) {
 });
 
 push.on('notification', function(data) {
-	// data.message,
-	// data.title,
-	// data.count,
-	// data.sound,
-	// data.image,
-	// data.additionalData
+	data.message,
+	data.title,
+	data.count,
+	data.sound,
+	data.image,
+	data.additionalData
 	console.log(data);
 	alert(data.message);
 });
