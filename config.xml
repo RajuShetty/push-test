@@ -25,8 +25,10 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#ee6e73" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
+	
     <preference name="phonegap-version" value="cli-7.0.1" />
 	<preference name='pgb-builder-version' value='2' />
+	
     <platform name="android">
 	<resource-file src="google-services.json" target="google-services.json" />
         <allow-intent href="market:*" />
@@ -40,7 +42,7 @@
 
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-statusbar" spec="~2.1.0" />
-	<plugin name="phonegap-plugin-push" spec="2.0.0" />
+	<plugin name="phonegap-plugin-push" />
     <plugin name="cordova-plugin-console" spec="~1.0.2" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.0" />
 </widget>
