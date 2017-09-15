@@ -84,7 +84,7 @@ push.on('error', function(e) {
 });
 		
 		
- app.push.on('notification', function(data) {
+ push.on('notification', function(data) {
      console.log('notification event');
      var cards = document.getElementById("cards");
      var push = '<div class="row">' +
